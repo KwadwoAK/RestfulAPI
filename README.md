@@ -21,7 +21,7 @@ This will create the necessary jar for the Dockerfile.
 ## Dockerization
 This command will build a docker image using the Dockerfile in the current directory.
 ```
-docker build -t restapp .
+docker build -t myapp .
 ```
 
 after the image is created run the docker container using this command.

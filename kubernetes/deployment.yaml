@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restapp-group
+  labels:
+    app: restapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: restapp
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: restapp
+    spec:
+      containers:
+        - name: myrest
+          image: tethmado/myapp:0.0.4
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATA_MICROSERVICE
+              valueFrom:
+                configMapKeyRef:
+                  name: restapp-config
+                  key: DATA_MICROSERVICE

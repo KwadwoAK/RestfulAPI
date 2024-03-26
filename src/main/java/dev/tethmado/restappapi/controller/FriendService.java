@@ -66,7 +66,7 @@ public class FriendService {
             num2 = num3;
 
         }
-        fib.remove(fib.size()-1);
+
 
         return fib.toString();
     }

@@ -1,0 +1,37 @@
+name: Build and Test RESTful Service
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker image
+        run: docker build -t myapp .
+
+      - name: Run the Docker container
+        run: docker run -d --name myrest -p 8123:8123 myapp
+
+      - name: Test the RESTful service
+        run: |
+          # Wait for the container to start up
+          sleep 5
+          
+          # Send a GET request to the service
+          response=$(curl http://localhost:8123/fib?length=3)
+          
+          # Check that the response is "[0, 1, 1]"
+          if [ "$response" == "[0, 1, 1]" ]; then
+            echo "Test passed!"
+          else
+            echo "Test failed. Expected 'Hello world.', got '$response'"
+            exit 1
+          fi

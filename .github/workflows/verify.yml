@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build the Docker image
+      - name: Build the Docker image from the Dockerfile
         run: docker build -t myapp .
 
-      - name: Run the Docker container
+      - name: Run the Docker container on port 8123
         run: docker run -d --name myrest -p 8123:8123 myapp
 
       - name: Test the RESTful service

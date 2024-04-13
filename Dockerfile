@@ -4,6 +4,7 @@ FROM openjdk:17
 # Set the working directory inside the container
 WORKDIR /app
 
+
 # Copy the Java application JAR file into the container
 COPY build/libs/RestappAPI-0.0.1-SNAPSHOT.jar .
 

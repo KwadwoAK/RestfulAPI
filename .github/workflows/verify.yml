@@ -36,7 +36,7 @@ jobs:
           sleep 5
           
           # Send a GET request to the service
-          response=$(curl http://localhost:8123/fib?length=3)
+          response=$(curl http://localhost:8123/friendvendor/fib?length=3)
           
           # Check that the response is "[0, 1, 1]"
           if [ "$response" == "[0, 1, 1]" ]; then

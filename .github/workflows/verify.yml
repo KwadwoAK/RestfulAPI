@@ -27,8 +27,8 @@ jobs:
       - name: Build the Docker image from the Dockerfile
         run: docker build . -t myapp
 
-      - name: Run the Docker container on port 8123
-        run: docker run -d -p 8123:8123 myapp
+      - name: Run the Docker container on port 8080
+        run: docker run -d -p 8080:8080 myapp
 
       - name: Test the RESTful service
         run: |
@@ -36,7 +36,7 @@ jobs:
           sleep 5
           
           # Send a GET request to the service
-          response=$(curl http://localhost:8123/friendvendor/fib?length=3)
+          response=$(curl http://localhost:8080/friendvendor/fib?length=3)
           
           # Check that the response is "[0, 1, 1]"
           if [ "$response" == [0, 1, 1] ]; then

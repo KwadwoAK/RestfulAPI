@@ -28,7 +28,7 @@ jobs:
         run: docker build . -t myapp
 
       - name: Run the Docker container on port 8123
-        run: docker run -d --name myrest -p 8123:8123 myapp
+        run: docker run -d -p 8123:8123 myapp
 
       - name: Test the RESTful service
         run: |
@@ -42,6 +42,5 @@ jobs:
           if [ "$response" == "[0, 1, 1]" ]; then
             echo "Test passed!"
           else
-            echo "Test failed. Expected 'Hello world.', got '$response'"
+            echo "Test failed. Expected '[0, 1, 1]', got '$response'"
             exit 1
-          fi
